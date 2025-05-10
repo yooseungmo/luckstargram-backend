@@ -9,6 +9,12 @@ async function bootstrap() {
     logger: blancLogger,
   });
 
+  app.enableCors({
+    origin: ['https://luckstargram.com', 'http://localhost:5173/'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: '*',
+  });
+
   const config = new DocumentBuilder()
     .setTitle('luckstargram-backend')
     .setDescription('luckstargram-backend')
