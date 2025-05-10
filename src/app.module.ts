@@ -3,6 +3,8 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { TypeOrmBlancLogger } from 'blanc-logger';
 import * as Joi from 'joi';
+import { FortuneModule } from 'src/fortune/fortune.module';
+import { UserLogModule } from 'src/user-log/user-log.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
@@ -29,7 +31,7 @@ import { UserModule } from './user/user.module';
         username: configService.get<string>('DB_USERNAME'),
         password: configService.get<string>('DB_PASSWORD'),
         database: configService.get<string>('DB_DATABASE'),
-        entities: [`${__dirname}/entites/**.entity{.ts,.js}`],
+        entities: [`${__dirname}/entities/**.entity{.ts,.js}`],
         logging: true,
         logger: new TypeOrmBlancLogger(),
         synchronize: false,
@@ -38,6 +40,8 @@ import { UserModule } from './user/user.module';
       }),
     }),
     UserModule,
+    FortuneModule,
+    UserLogModule,
   ],
   controllers: [AppController],
   providers: [AppService],
