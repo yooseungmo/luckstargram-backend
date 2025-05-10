@@ -1,8 +1,10 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { TypeOrmBlancLogger } from 'blanc-logger';
 import * as Joi from 'joi';
+import { FortuneEntity } from 'src/entities/fortune.entity';
+import { UserEntity } from 'src/entities/user.entity';
+import { UserLogEntity } from 'src/entities/user_log.entity';
 import { FortuneModule } from 'src/fortune/fortune.module';
 import { UserLogModule } from 'src/user-log/user-log.module';
 import { AppController } from './app.controller';
@@ -31,9 +33,9 @@ import { UserModule } from './user/user.module';
         username: configService.get<string>('DB_USERNAME'),
         password: configService.get<string>('DB_PASSWORD'),
         database: configService.get<string>('DB_DATABASE'),
-        entities: [`${__dirname}/entities/**.entity{.ts,.js}`],
-        logging: true,
-        logger: new TypeOrmBlancLogger(),
+        entities: [UserEntity, FortuneEntity, UserLogEntity],
+        // logging: true,
+        // logger: new TypeOrmBlancLogger(),
         synchronize: false,
         charset: 'utf8mb4',
         timezone: 'z',

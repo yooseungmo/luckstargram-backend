@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { generateUUID } from 'blanc-logger';
 import { plainToInstance } from 'class-transformer';
 import { isEmpty } from 'src/commons/util/is-empty';
+import { generateUUID } from 'src/commons/util/uuid';
 import { FortuneEntity } from 'src/entities/fortune.entity';
 import { UserEntity } from 'src/entities/user.entity';
 import { UserLogEntity } from 'src/entities/user_log.entity';
@@ -23,7 +23,6 @@ export class FortuneService {
   async getFortune(dto: ApiFortuneGetRequestQueryDto) {
     const user = await this.findOrCreateUser(dto);
     const idx = getCryptoAlgorithm(dto);
-    console.log(idx);
 
     const fortune = await this.fortuneQueryRepository.findOne(idx);
 

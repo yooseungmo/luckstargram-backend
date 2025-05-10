@@ -1,12 +1,11 @@
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { blancLogger, BlancLoggerMiddleware } from 'blanc-logger';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
-    logger: blancLogger,
+    // logger: blancLogger,
   });
 
   app.enableCors({
@@ -39,7 +38,7 @@ async function bootstrap() {
       },
     }),
   );
-  app.use(new BlancLoggerMiddleware().use);
+  // app.use(new BlancLoggerMiddleware().use);
 
   await app.listen(process.env.PORT ?? 3000);
 }
