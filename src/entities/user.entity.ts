@@ -16,7 +16,7 @@ export class UserEntity {
   @Column({ type: 'varchar', length: 50, nullable: false })
   name: string;
 
-  @Column({ type: 'datetime', nullable: false })
+  @Column({ type: 'date', nullable: false })
   birth_date: Date;
 
   @CreateDateColumn({
