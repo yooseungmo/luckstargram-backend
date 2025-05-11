@@ -8,7 +8,12 @@ let cachedHandler: Handler;
 async function bootstrap(): Promise<Handler> {
   const app = await NestFactory.create(AppModule);
   app.enableCors({
-    origin: ['https://luckstargram.com', 'http://localhost:5173'],
+    origin: [
+      'https://luckstargram.com',
+      'https://www.luckstargram.com',
+      'https://luckstargram-frontend.vercel.app',
+      'http://localhost:5173',
+    ],
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: '*',
   });
