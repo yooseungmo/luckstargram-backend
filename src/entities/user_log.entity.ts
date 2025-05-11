@@ -13,6 +13,9 @@ export class UserLogEntity {
   @Column({ type: 'char', length: 32, nullable: false, unique: true })
   uuid: string;
 
+  @Column({ type: 'varchar', length: 50, nullable: false })
+  user_name: string;
+
   @Column({ type: 'char', length: 32, nullable: false, unique: true })
   user_uuid: string;
 
