@@ -4,6 +4,13 @@ import { Expose } from 'class-transformer';
 export class ApiFortuneGetResponseDto {
   @Expose()
   @ApiProperty({
+    example: 'b20f6cbaf77c5e60bcec9523d7945517',
+    description: '결과 uuid',
+  })
+  uuid: string;
+
+  @Expose()
+  @ApiProperty({
     example: '유승모',
     description: '이름',
   })

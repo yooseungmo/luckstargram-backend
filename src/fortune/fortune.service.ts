@@ -26,9 +26,9 @@ export class FortuneService {
 
     const fortune = await this.fortuneQueryRepository.findOne(idx);
 
-    await this.logUserFortune(user, fortune.uuid);
+    const userLog = await this.logUserFortune(user, fortune.uuid);
 
-    return this.toResponseDto(fortune, dto);
+    return this.toResponseDto(userLog, fortune, dto);
   }
 
   private async findOrCreateUser(
@@ -48,22 +48,23 @@ export class FortuneService {
   private async logUserFortune(
     user: UserEntity,
     fortuneUuid: string,
-  ): Promise<void> {
+  ): Promise<UserLogEntity> {
     const userLogEntity = new UserLogEntity();
     userLogEntity.uuid = generateUUID();
     userLogEntity.user_name = user.name;
     userLogEntity.user_uuid = user.uuid;
     userLogEntity.fortune_uuid = fortuneUuid;
-    await this.userLogQueryRepository.save(userLogEntity);
+    return await this.userLogQueryRepository.save(userLogEntity);
   }
 
   private toResponseDto(
+    { uuid }: UserLogEntity,
     fortune: FortuneEntity,
     { name, birth_date, fortune_date }: ApiFortuneGetRequestQueryDto,
   ): ApiFortuneGetResponseDto {
     return plainToInstance(
       ApiFortuneGetResponseDto,
-      { ...fortune, name, birth_date, fortune_date },
+      { ...fortune, uuid, name, birth_date, fortune_date },
       { excludeExtraneousValues: true },
     );
   }
