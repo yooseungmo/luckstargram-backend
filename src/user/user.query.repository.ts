@@ -20,4 +20,10 @@ export class UserQueryRepository {
   async save(userEntity: UserEntity) {
     return this.repository.save(userEntity);
   }
+
+  async findOne(uuid: string): Promise<UserEntity | null> {
+    return this.repository.findOne({
+      where: { uuid },
+    });
+  }
 }

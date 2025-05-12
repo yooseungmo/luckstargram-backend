@@ -9,6 +9,7 @@ import { FortuneModule } from 'src/fortune/fortune.module';
 import { UserLogModule } from 'src/user-log/user-log.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { ShareModule } from './share/share.module';
 import { UserModule } from './user/user.module';
 
 @Module({
@@ -44,6 +45,7 @@ import { UserModule } from './user/user.module';
     UserModule,
     FortuneModule,
     UserLogModule,
+    ShareModule,
   ],
   controllers: [AppController],
   providers: [AppService],

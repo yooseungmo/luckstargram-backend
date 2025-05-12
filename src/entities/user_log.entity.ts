@@ -1,7 +1,11 @@
+import { FortuneEntity } from 'src/entities/fortune.entity';
+import { UserEntity } from 'src/entities/user.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
+  ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -30,4 +34,12 @@ export class UserLogEntity {
     default: () => 'CURRENT_TIMESTAMP',
   })
   created_at: Date;
+
+  @ManyToOne(() => UserEntity)
+  @JoinColumn({ name: 'user_uuid', referencedColumnName: 'uuid' })
+  user: UserEntity;
+
+  @ManyToOne(() => FortuneEntity)
+  @JoinColumn({ name: 'fortune_uuid', referencedColumnName: 'uuid' })
+  fortune: FortuneEntity;
 }
