@@ -22,6 +22,9 @@ export class UserLogEntity {
   @Column({ type: 'char', length: 32, nullable: false, unique: true })
   fortune_uuid: string;
 
+  @Column({ type: 'date', nullable: false })
+  fortune_date: Date;
+
   @CreateDateColumn({
     type: 'datetime',
     default: () => 'CURRENT_TIMESTAMP',

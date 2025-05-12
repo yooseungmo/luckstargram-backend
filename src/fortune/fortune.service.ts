@@ -26,7 +26,7 @@ export class FortuneService {
 
     const fortune = await this.fortuneQueryRepository.findOne(idx);
 
-    const userLog = await this.logUserFortune(user, fortune.uuid);
+    const userLog = await this.logUserFortune(dto, user, fortune.uuid);
 
     return this.toResponseDto(userLog, fortune, dto);
   }
@@ -46,6 +46,7 @@ export class FortuneService {
   }
 
   private async logUserFortune(
+    dto: ApiFortuneGetRequestQueryDto,
     user: UserEntity,
     fortuneUuid: string,
   ): Promise<UserLogEntity> {
@@ -54,6 +55,7 @@ export class FortuneService {
     userLogEntity.user_name = user.name;
     userLogEntity.user_uuid = user.uuid;
     userLogEntity.fortune_uuid = fortuneUuid;
+    userLogEntity.fortune_date = new Date(dto.fortune_date);
     return await this.userLogQueryRepository.save(userLogEntity);
   }
 
