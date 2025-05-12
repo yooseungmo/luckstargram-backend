@@ -38,7 +38,7 @@ import { UserModule } from './user/user.module';
         // logger: new TypeOrmBlancLogger(),
         synchronize: false,
         charset: 'utf8mb4',
-        timezone: 'z',
+        timezone: 'Z',
       }),
     }),
     UserModule,
