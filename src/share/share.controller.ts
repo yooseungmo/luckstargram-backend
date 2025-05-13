@@ -7,7 +7,7 @@ import { ShareService } from './share.service';
 export class ShareController {
   constructor(private readonly shareService: ShareService) {}
 
-  @Get('/uuid')
+  @Get('/:uuid')
   @ApiOperation({
     summary: '공유된 운세 조회',
     description: '공유된 운세 조회',
