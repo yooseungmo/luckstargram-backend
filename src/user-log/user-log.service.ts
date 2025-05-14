@@ -8,7 +8,7 @@ export class UserLogService {
     private readonly userLogQueryRepository: UserLogQueryRepository,
   ) {}
 
-  async findUuidByShortLink(code: string): Promise<string | null> {
+  async getUuidToShortLink(code: string): Promise<string | null> {
     const uuid: string | null =
       await this.userLogQueryRepository.findUuidByShortLink(code);
     if (isEmpty(uuid)) throw new NotFoundException('Invalid short link');
