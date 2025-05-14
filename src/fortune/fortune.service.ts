@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { plainToInstance } from 'class-transformer';
+import { nanoid } from 'nanoid';
 import { isEmpty } from 'src/commons/util/is-empty';
 import { generateUUID } from 'src/commons/util/uuid';
 import { FortuneEntity } from 'src/entities/fortune.entity';
@@ -73,7 +74,6 @@ export class FortuneService {
   }
 
   private async makeShortLike() {
-    const { nanoid } = await import('nanoid');
     return nanoid(6);
   }
 }
