@@ -26,4 +26,12 @@ export class UserLogQueryRepository {
       relations: ['user', 'fortune'],
     });
   }
+
+  async findUuidByShortLink(code: string): Promise<string | null> {
+    const result = await this.repository.findOne({
+      where: { short_link: code },
+      select: { uuid: true },
+    });
+    return result?.uuid || null;
+  }
 }

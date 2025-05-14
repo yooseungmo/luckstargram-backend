@@ -35,6 +35,9 @@ export class UserLogEntity {
   })
   created_at: Date;
 
+  @Column({ type: 'char', length: 6, nullable: false })
+  short_link: string;
+
   @ManyToOne(() => UserEntity)
   @JoinColumn({ name: 'user_uuid', referencedColumnName: 'uuid' })
   user: UserEntity;

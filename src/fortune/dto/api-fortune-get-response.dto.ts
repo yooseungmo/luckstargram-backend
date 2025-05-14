@@ -44,4 +44,11 @@ export class ApiFortuneGetResponseDto {
     description: '운세 메시지',
   })
   message: string;
+
+  @Expose()
+  @ApiProperty({
+    example: '12n13j!',
+    description: '숏 링크',
+  })
+  short_link: string;
 }

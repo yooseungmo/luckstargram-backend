@@ -56,18 +56,24 @@ export class FortuneService {
     userLogEntity.user_uuid = user.uuid;
     userLogEntity.fortune_uuid = fortuneUuid;
     userLogEntity.fortune_date = new Date(dto.fortune_date);
+    userLogEntity.short_link = await this.makeShortLike();
     return await this.userLogQueryRepository.save(userLogEntity);
   }
 
   private toResponseDto(
-    { uuid }: UserLogEntity,
+    { uuid, short_link }: UserLogEntity,
     fortune: FortuneEntity,
     { name, birth_date, fortune_date }: ApiFortuneGetRequestQueryDto,
   ): ApiFortuneGetResponseDto {
     return plainToInstance(
       ApiFortuneGetResponseDto,
-      { ...fortune, uuid, name, birth_date, fortune_date },
+      { ...fortune, uuid, name, birth_date, fortune_date, short_link },
       { excludeExtraneousValues: true },
     );
+  }
+
+  private async makeShortLike() {
+    const { nanoid } = await import('nanoid');
+    return nanoid(6);
   }
 }
