@@ -1,12 +1,12 @@
 {
   "name": "luckstargram-backend",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "AI가 예측한 나만의 운세를 바로 확인해보세요!",
   "author": "Blanc (https://github.com/yooseungmo)",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yooseungmo/luckstargram-frontend.git"
+    "url": "https://github.com/yooseungmo/luckstargram-backend.git"
   },
   "homepage": "https://luckstargram.com",
   "private": true,
