@@ -11,9 +11,8 @@ export class UserLogController {
     summary: '숏링크 리다이렉트',
     description: '숏링크 리다이렉트',
   })
-  async getUuidToShortLink(
-    @Param('code') code: string,
-  ): Promise<string | null> {
-    return this.userLogService.getUuidToShortLink(code);
+  async getUuidToShortLink(@Param('code') code: string) {
+    const uuid = await this.userLogService.getUuidToShortLink(code);
+    return { uuid };
   }
 }
